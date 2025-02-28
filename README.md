@@ -7,7 +7,7 @@
 
 2. **Navegar al directorio del proyecto:**
     ```sh
-    cd my-app-habits
+    cd myapp
     ```
 
 3. **Configurar el archivo `.env`:**
