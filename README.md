@@ -2,18 +2,18 @@
 
 1. **Clonar el repositorio:**
     ```sh
-    git clone https://github.com/lfbernalU/my-app-habits.git
+    git clone https://github.com/lfbernalU/myapp.git
     ```
 
 2. **Navegar al directorio del proyecto:**
     ```sh
-    cd my-app-habits
+    cd myapp
     ```
 
 3. **Configurar el archivo `.env`:**
         Crea un archivo llamado `.env` en la raíz del proyecto y agrega las siguientes variables de entorno:
         ```plaintext
-            MONGO_URI=mongodb+srv://<usuario>:<contraseña>@cluster0.z7mez.mongodb.net/app_habits?retryWrites=true&w=majority&appName=Cluster0
+            MONGO_URI=mongodb+srv://<usuario>:<contraseña>@cluster0.z7mez.mongodb.net/db?retryWrites=true&w=majority&appName=Cluster0
         ```
 
 4. **Instalar las dependencias:**
