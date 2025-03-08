@@ -3,7 +3,7 @@ var router = express.Router();
 const Habit = require('../models/Habit');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/',  function(req, res, next) {
   res.json({ message: 'Hello World' });
 });
 

@@ -1,4 +1,6 @@
-# Instrucciones para la Ejecución del Proyecto Habits
+# Instrucciones para la Ejecución del Proyecto 
+
+## Backend
 
 1. **Clonar el repositorio:**
     ```sh
@@ -7,7 +9,7 @@
 
 2. **Navegar al directorio del proyecto:**
     ```sh
-    cd myapp
+    cd myapp/backend
     ```
 
 3. **Configurar el archivo `.env`:**
@@ -29,3 +31,27 @@
 6. **Abrir en el navegador:**
     Abre tu navegador y navega a `http://localhost:3000` para ver la aplicación en funcionamiento.
 
+## Frontend
+
+
+1. **Clonar el repositorio:**
+    ```sh
+    git clone https://github.com/lfbernalU/myapp.git
+    ```
+
+2. **Navegar al directorio del proyecto:**
+    ```sh
+    cd myapp/frontend
+
+4. **Instalar las dependencias:**
+    ```sh
+    npm install
+    ```
+
+5. **Ejecutar el proyecto:**
+    ```sh
+    npm run dev
+    ```
+
+6. **Abrir en el navegador:**
+    Abre tu navegador y navega a `http://localhost:3001` para ver la aplicación en funcionamiento.
