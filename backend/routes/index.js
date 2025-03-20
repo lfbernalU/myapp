@@ -81,7 +81,7 @@ router.patch('/habits/markasdone/:id', async function(req, res) {
         habit.lastDone = new Date();
 
         if (timeDiffenceInHours(habit.lastDone, habit.lastUpdated) < 24) {
-            habit.lastDone = new Date();
+            habit.lastUpdated = new Date();
             habit.days = timeDiffenceInDays(habit.lastDone, habit.startedAt);
             await habit.save();
             res.status(200).json({ message: 'Habit marked as done' });
@@ -90,7 +90,7 @@ router.patch('/habits/markasdone/:id', async function(req, res) {
             habit.lastUpdated = new Date();
             habit.startedAt = new Date();
             await habit.save();
-            res.status(200).json({ message: 'Habit reset' });
+            res.status(200).json({ message: 'Habit restarted' });
         }
 
     } catch (error) {
