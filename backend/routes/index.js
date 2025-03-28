@@ -1,17 +1,40 @@
 var express = require('express');
 var router = express.Router();
 const Habit = require('../models/Habit');
+const jwt = require('jsonwebtoken');
+const mongoose = require('mongoose');
 
 /* GET home page. */
+
+const authenticateToken = (req, res, next) => {
+    const token = req.headers['authorization'];
+
+    if (!token) return res.status(401).json({ message: 'Unauthorized' });
+
+    try {
+        const tokenWithoutBearer = token.replace('Bearer ', '');
+        const verified = jwt.verify(tokenWithoutBearer, process.env.JWT_SECRET);
+        req.user = verified;
+        next();
+    } catch (error) {
+        res.status(401).json({ message: 'Invalid token' });
+    }
+
+};
+
 router.get('/',  function(req, res, next) {
   res.json({ message: 'Hello World' });
 });
 
 /* GET habits */
 
-router.get('/habits', async function(req, res, next) {
+router.get('/habits', authenticateToken, async function(req, res) {
   try {
-      const habits = await Habit.find();
+
+      let userId = req.user && req.user.userId ? req.user.userId : res.status(500).json({ error: 'Error retrieving habits' });
+
+      const habits = await Habit.find({ userId:new mongoose.Types.ObjectId(userId) })
+
       res.json(habits);
   } catch (error) {
       res.status(400).json({ error: error.message });
@@ -22,14 +45,16 @@ router.get('/habits', async function(req, res, next) {
 
 /* POST habits */
 
-router.post('/habits', async function(req, res, next) {
-    const { title, description } = req.body;
-    const habit = new Habit({ title, description });
+router.post('/habits', authenticateToken, async function(req, res) {
     try {
+        const { title, description } = req.body;
+        let userId = req.user && req.user.userId ? req.user.userId : res.status(500).json({ error: 'Error creating habit' });
+        userId = new mongoose.Types.ObjectId(userId);
+        const habit = new Habit({ title, description, userId });
         await habit.save();
-        res.json(habit);
+        res.status(201).json(habit);
     } catch (error) {
-        res.status(400).json({ error: error.message });
+        res.status(400).json({ message: "Error creating habit" });
     }
 });
 
@@ -60,7 +85,7 @@ router.put('/habits/:id', async function(req, res, next) {
 
 /* DELETE habits */
 
-router.delete('/habits/:id', async function(req, res, next) {
+router.delete('/habits/:id', authenticateToken, async function(req, res, next) {
     const { id } = req.params;
     try {
         await Habit.findByIdAndDelete(id);
@@ -71,7 +96,7 @@ router.delete('/habits/:id', async function(req, res, next) {
 }   
 );
 
-router.patch('/habits/markasdone/:id', async function(req, res) {
+router.patch('/habits/markasdone/:id', authenticateToken, async function(req, res) {
 
     const { id } = req.params;
     

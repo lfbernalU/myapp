@@ -5,7 +5,6 @@ const HabitSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true,
-        unique: true
     },
     description: {
         type: String,
@@ -31,6 +30,11 @@ const HabitSchema = new mongoose.Schema({
     startedAt: {
         type: Date,
         default: Date.now
+    },
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
     }
 
 });

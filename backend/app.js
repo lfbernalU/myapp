@@ -15,7 +15,8 @@ var app = express();
 const corsOptions = {
   origin: 'http://localhost:3001',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
 }
 
 app.use(cors(corsOptions));

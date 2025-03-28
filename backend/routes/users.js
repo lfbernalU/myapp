@@ -43,7 +43,7 @@ router.post('/login', async (req, res) => {
     if (!validPassword) return res.status(400).json({ message: 'Invalid password' });
 
     // Generate token
-    const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, { expiresIn: '7d' });
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '7d' });
     res.cookie('habbitToken', token, { 
       httpOnly: false, // true in production
       secure: false, // true in production 
