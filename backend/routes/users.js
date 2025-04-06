@@ -26,6 +26,7 @@ router.post('/register', async (req, res, ) => {
   } catch (error) {
       res.status(500).json({ error: 'Error register user', message: error.message });
   }
+
 });
 
 router.post('/login', async (req, res) => {
@@ -34,7 +35,6 @@ router.post('/login', async (req, res) => {
     const { username, password } = req.body;
 
     // Search for user in the database
-
     const user = await User.findOne({ username });
     if (!user) return res.status(400).json({ message: 'User not found' });
 

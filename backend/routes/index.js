@@ -19,12 +19,12 @@ const authenticateToken = (req, res, next) => {
     } catch (error) {
         res.status(401).json({ message: 'Invalid token' });
     }
-
 };
 
 router.get('/',  function(req, res, next) {
   res.json({ message: 'Hello World' });
 });
+
 
 /* GET habits */
 
@@ -82,6 +82,7 @@ router.put('/habits/:id', async function(req, res, next) {
     }
 }
 );
+
 
 /* DELETE habits */
 

@@ -13,7 +13,7 @@ var users = require('./routes/users');
 var app = express();
 
 const corsOptions = {
-  origin: 'http://localhost:3001',
+  origin: 'https://habits-tracker-mu.vercel.app',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
@@ -50,9 +50,9 @@ app.use(function(err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
+  // json the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.json({ error: err.message });
 });
 
 module.exports = app;

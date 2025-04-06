@@ -1,0 +1,20 @@
+{
+    "version": 2,
+    "builds": [
+        {
+            "src": "app.js",
+            "use": "@vercel/node"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "app.js"
+        }
+    ],
+    "env": {
+        "PORT": "3000",
+        "MONGO_URI" : "mongodb+srv://lfbernal:12346578!$@cluster0.z7mez.mongodb.net/app_habits?retryWrites=true&w=majority&appName=Cluster0",
+        "JWT_SECRET": "PROJECT_HABITS"
+    }
+}
